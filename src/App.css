@@ -1,0 +1,60 @@
+.nav { 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: gray;
+  height: 60px;
+}
+
+.nav a { 
+  margin: 10px;
+  background-color: white;
+  color: black;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 2px;
+  width: 60px;
+  text-align: center;
+}
+
+.content { 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+}
+
+.section {
+  padding: 2rem;
+  background-color: lightgray;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.label {
+  padding: 1rem;
+  background-color: lightgray;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.error { 
+  background-color: lightcoral;
+}
+
+.data { 
+  background-color: lightgreen;
+}
+
+.block { 
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.dog {
+}
+
+.owner { 
+}
