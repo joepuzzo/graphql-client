@@ -1,5 +1,6 @@
 import { useState, useContext, useEffect, useRef } from 'react';
 import ApolloClientContext from './ApolloClientContext';
+import { ApolloError } from 'apollo-client';
 
 const FETCH_POLICIES = {
   CACHE_AND_NETWORK: 'cache-and-network',
@@ -30,8 +31,11 @@ const useWatchQuery = ({
   const [_, throwError] = useState();
 
   const dealWithError = (err) => {
-    console.log('ERROR', err);
-    setError(err);
+    //console.log('ERROR', err);
+    if(err){
+      const apolloError = new ApolloError(err);
+      setError(apolloError);
+    }
   };
 
   useEffect( () => {
@@ -53,6 +57,7 @@ const useWatchQuery = ({
       setData(Object.keys(initialResult.data).length === 0 ? undefined : initialResult.data);
       // Set loading
       setLoading(initialResult.loading);
+      //console.log('INITIAL ERRORS', initialResult.errors);
       // Get the error out
       const er = initialResult.errors ? { graphQLErrors: initialResult.errors } : undefined;
       // Deal with the error
@@ -67,11 +72,14 @@ const useWatchQuery = ({
           setLoading(result.loading);
           // Get the error out
           const err = result.errors ? { graphQLErrors: result.errors } : undefined;
+          //console.log('NEXT ERRORS', result.errors);
           // Deal with the error
           dealWithError(err);
         },
         error: (errr) => {
           querySubscription.current.resetLastResults();
+          setLoading(false);
+          //console.log('ERROR ERRORS', errr);
           dealWithError(errr);
         }
       });

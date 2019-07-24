@@ -58,3 +58,16 @@
 
 .owner { 
 }
+
+.button {
+  padding: 5px;
+}
+
+.loading { 
+  background-color: lightgray;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
